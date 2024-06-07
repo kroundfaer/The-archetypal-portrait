@@ -97,7 +97,7 @@ function calculateTarot() {
     cardElement.classList.add('tarot-card');
     cardElement.innerHTML = `
       <strong>Позиция ${index + 1}:</strong> ${cardNumber} - ${cardName}
-      <img src="https://github.com/kroundfaer/The-archetypal-portrait/tree/main/images/${cardNumber}.jpg" class="tarot-image" alt="${cardName}">
+      <img src="images/${cardNumber}.jpg" class="tarot-image" alt="${cardName}">
       <div class="tarot-description">${cardDescription}</div>
     `;
     tarotCardsContainer.appendChild(cardElement);
