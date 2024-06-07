@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Архетипический портрет по Таро</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<h2>Введите вашу дату рождения для расчета архетипического портрета</h2>
+
+<div class="input-group">
+  <label for="day">День:</label>
+  <input type="number" id="day" name="day" min="1" max="31">
+</div>
+
+<div class="input-group">
+  <label for="month">Месяц:</label>
+  <input type="number" id="month" name="month" min="1" max="12">
+</div>
+
+<div class="input-group">
+  <label for="year">Год:</label>
+  <input type="number" id="year" name="year" min="1900" max="2100">
+</div>
+
+<button onclick="calculateTarot()">Рассчитать</button>
+
+<div id="tarot-cards"></div>
+
+<script>
+function mod22(num) {
+  return num > 22 ? num - 22 : num;
+}
+
+function calculateTarot() {
+  const day = parseInt(document.getElementById('day').value);
+  const month = parseInt(document.getElementById('month').value);
+  const year = parseInt(document.getElementById('year').value);
+  const yearSum = [...year.toString()].reduce((a, b) => parseInt(a) + parseInt(b), 0);
+
+  const positions = [
+    mod22(day),
+    month,
+    mod22(yearSum),
+    mod22(day + month),
+    mod22(month + yearSum),
+    mod22(mod22(day + month) + mod22(month + yearSum))
+  ];
+
+  const arcanaNames = [
+    'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
+    'Колесница', 'Справедливость', 'Отшельник', 'Колесо Фортуны', 'Сила', 'Повешенный',
+    'Смерть', 'Умеренность', 'Дьявол', 'Башня', 'Звезда', 'Луна', 'Солнце', 'Суд',
+    'Мир', 'Шут'
+  ];
+
+  const arcanaDescriptions = [
+    'Описание для Мага',  // Описание для Мага
+    'Описание для Жрицы', // Описание для Жрицы
+    'Описание для Императрицы', //Описание для Императрицы
+	'Описание для Император', //Описание для Император
+	'Описание для Верховный Жрец', //Описание для Верховный Жрец
+	'Описание для Влюбленные',  //Описание для Влюбленные
+	'Описание для Колесница',  //Описание для Колесница
+	'Описание для Справедливость', //Описание для Справедливость
+	'Описание для Отшельник',  //Описание для Отшельник
+	'Описание для Колесо Фортуны', //Описание для Колесо Фортуны
+	'Описание для Сила',  //Описание для Сила
+	'Описание для Повешенный',  //Описание для Повешенный
+	'Описание для Смерть',  //Описание для Смерть
+	'Описание для Умеренность',  //Описание для Умеренность
+	'Описание для Дьявол',  //Описание для Дьявол
+	'Описание для Башня',  //Описание для Башня
+	'Описание для Звезда',  //Описание для Звезда
+	'Описание для Луна',  //Описание для Луна
+	'Описание для Солнце', //Описание для Солнце
+	'Описание для Суд',  //Описание для Суд
+	'Описание для Мир', //Описание для Мир
+	'Описание для Шут',  //писание для Шут
+
+	
+    // Добавьте описания для всех арканов
+  ];
+
+  const tarotCardsContainer = document.getElementById('tarot-cards');
+  tarotCardsContainer.innerHTML = '';
+
+  positions.forEach((position, index) => {
+    const cardNumber = position === 0 ? 22 : position;
+    const cardName = arcanaNames[cardNumber - 1];
+    const cardDescription = arcanaDescriptions[cardNumber - 1]; // Добавьте описание для каждого аркана
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('tarot-card');
+    cardElement.innerHTML = `
+      <strong>Позиция ${index + 1}:</strong> ${cardNumber} - ${cardName}
+      <img src="images/${cardNumber}.jpg" class="tarot-image" alt="${cardName}">
+      <div class="tarot-description">${cardDescription}</div>
+    `;
+    tarotCardsContainer.appendChild(cardElement);
+  });
+}
+</script>
+
+</body>
+</html>

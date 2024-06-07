@@ -1,0 +1,95 @@
+/* Основные стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  text-align: center; /* Центрирование текста */
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 2rem; /* Добавлено нижнее поле для отступа */
+}
+
+.input-group {
+  margin: 1rem auto; /* Центрирование группы ввода */
+  display: flex;
+  justify-content: center; /* Центрирование элементов внутри группы */
+}
+
+.input-group label {
+  margin-right: 0.5rem;
+}
+
+.input-group input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  margin-right: 1rem; /* Добавлено правое поле для отступа */
+}
+
+button {
+  display: block;
+  width: 200px;
+  padding: 1rem;
+  margin: 2rem auto; /* Увеличен верхний и нижний отступы */
+  border: none;
+  border-radius: 0.3rem;
+  background: #5cb85c;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4cae4c;
+}
+
+/* Стили для карточек Таро */
+#tarot-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.tarot-card {
+  width: calc(33.333% - 2rem);
+  margin: 1rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.tarot-card strong {
+  display: block;
+  padding: 0.5rem;
+  background: #333;
+  color: white;
+  text-align: center; /* Центрирование заголовка карточки */
+}
+
+.tarot-image {
+  width: 100%;
+  height: auto;
+}
+
+.tarot-description {
+  padding: 0.5rem;
+  color: #666;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .tarot-card {
+    width: calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .tarot-card {
+    width: calc(100% - 2rem);
+  }
+}
