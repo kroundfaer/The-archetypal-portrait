@@ -26,11 +26,22 @@
 
 <button onclick="calculateTarot()">Рассчитать</button>
 
-<div id="tarot-cards"></div>
+<div id="tarot-cards" class="tarot-layout"></div>
+
 
 <!-- Место для текста и ссылок после расчета -->
+
 <div id="result-text"></div>
-<div id="result-links"></div>
+
+<div id="result-links">
+  
+  <a href="https://t.me/schepkina_svetlana">напишите мне в Telegram =)</a><br>
+
+
+
+</div>
+
+
 
 <script>
 function mod22(num) {
@@ -57,15 +68,12 @@ function calculateTarot() {
     mod22(mod22(day + month) + mod22(month + yearSum))
   ];
 
-   const arcanaNames = [
-  'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
+  const arcanaNames = [
+    'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
     'Колесница', 'Справедливость', 'Отшельник', 'Колесо Фортуны', 'Сила', 'Повешенный',
     'Смерть', 'Умеренность', 'Дьявол', 'Башня', 'Звезда', 'Луна', 'Солнце', 'Суд',
     'Мир', 'Шут'
-    // ... Ваши имена арканов ...
   ];
-
-// ... Ваши описания арканов ...
 
   const arcanaDescriptions = [
   '',  // Описание для Мага
@@ -89,15 +97,32 @@ function calculateTarot() {
 	'', //Описание для Солнце
 	'',  //Описание для Суд
 	'', //Описание для Мир
-	'',  //писание для Шут
-    
+	'',  //писание для Шу
+    // ... Ваши описания арканов ...
   ];
 
-
-  // ... Ваши имена и описания арканов ...
+  // Описания позиций
+  const descriptions = [
+    'Задача души и талант',
+    'Психологическая школа взросления',
+    'Экзаменатор',
+    'Внутренний конфликт',
+    'Ценности',
+    'Дар'
+  ];
 
   const tarotCardsContainer = document.getElementById('tarot-cards');
   tarotCardsContainer.innerHTML = '';
+
+  // Создание рядов для карт
+  const firstRow = document.createElement('div');
+  firstRow.classList.add('tarot-row');
+
+  const secondRow = document.createElement('div');
+  secondRow.classList.add('tarot-row');
+
+  const thirdRow = document.createElement('div');
+  thirdRow.classList.add('tarot-row');
 
   positions.forEach((position, index) => {
     const cardNumber = position === 0 ? 22 : position;
@@ -109,41 +134,24 @@ function calculateTarot() {
       <strong>Позиция ${index + 1}:</strong> ${cardNumber} - ${cardName}
       <img src="images/${cardNumber}.jpg" class="tarot-image" alt="${cardName}">
       <div class="tarot-description">${cardDescription}</div>
-      <p class="position-description"></p> <!-- Добавлен новый элемент для описания позиции -->
+      <p class="position-description">${descriptions[index]}</p> <!-- Описание позиции -->
     `;
-    tarotCardsContainer.appendChild(cardElement);
+
+    // Распределение карт по рядам
+    if (index < 3) {
+      firstRow.appendChild(cardElement);
+    } else if (index < 5) {
+      secondRow.appendChild(cardElement);
+    } else {
+      cardElement.classList.add('central-card');
+      thirdRow.appendChild(cardElement);
+    }
   });
 
-  // Добавление описаний к позициям
-  const descriptions = [
-    'Задача души и талант',
-    'Психологическая школа взросления',
-    'Экзаменатор',
-    'Внутренний конфликт',
-    'Ценности',
-    'Дар'
-  ];
-
-  // Получение всех элементов с классом 'position-description'
-  const positionDescriptions = document.querySelectorAll('.position-description');
-
-  // Присвоение каждому элементу соответствующего описания
-  positionDescriptions.forEach((descriptionElement, index) => {
-    descriptionElement.textContent = descriptions[index];
-  });
-
-  // Текст в конце карт
-  const resultText = document.getElementById('result-text');
-  resultText.innerHTML = `
-    <p></p>
-    
-  `;
-
-  // Обновление ссылки после расчета
-  const resultLinks = document.getElementById('result-links');
-  resultLinks.innerHTML = ''; // Очистка предыдущего содержимого resultLinks.innerHTML += '' добавить
-  resultLinks.innerHTML += '<a href="https://t.me/schepkina_svetlana">Telegram</a><br>';
-	
+  // Добавление рядов в контейнер
+  tarotCardsContainer.appendChild(firstRow);
+  tarotCardsContainer.appendChild(secondRow);
+  tarotCardsContainer.appendChild(thirdRow);
 }
 </script>
 
