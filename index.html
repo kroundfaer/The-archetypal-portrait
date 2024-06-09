@@ -1,12 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <title>Архетипический портрет по Таро</title>
-
 <link href="style.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
 
@@ -31,6 +28,10 @@
 
 <div id="tarot-cards"></div>
 
+<!-- Место для текста и ссылок после расчета -->
+<div id="result-text"></div>
+<div id="result-links"></div>
+
 <script>
 function mod22(num) {
   return num > 22 ? num - 22 : num;
@@ -40,6 +41,11 @@ function calculateTarot() {
   const day = parseInt(document.getElementById('day').value);
   const month = parseInt(document.getElementById('month').value);
   const year = parseInt(document.getElementById('year').value);
+  if (isNaN(day) || isNaN(month) || isNaN(year)) {
+    alert('Пожалуйста, введите корректные дату рождения.');
+    return;
+  }
+
   const yearSum = [...year.toString()].reduce((a, b) => parseInt(a) + parseInt(b), 0);
 
   const positions = [
@@ -51,40 +57,44 @@ function calculateTarot() {
     mod22(mod22(day + month) + mod22(month + yearSum))
   ];
 
-  const arcanaNames = [
-    'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
+   const arcanaNames = [
+  'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
     'Колесница', 'Справедливость', 'Отшельник', 'Колесо Фортуны', 'Сила', 'Повешенный',
     'Смерть', 'Умеренность', 'Дьявол', 'Башня', 'Звезда', 'Луна', 'Солнце', 'Суд',
     'Мир', 'Шут'
+    // ... Ваши имена арканов ...
   ];
+
+// ... Ваши описания арканов ...
 
   const arcanaDescriptions = [
-    'Описание для Мага',  // Описание для Мага
-    'Описание для Жрицы', // Описание для Жрицы
-    'Описание для Императрицы', //Описание для Императрицы
-	'Описание для Император', //Описание для Император
-	'Описание для Верховный Жрец', //Описание для Верховный Жрец
-	'Описание для Влюбленные',  //Описание для Влюбленные
-	'Описание для Колесница',  //Описание для Колесница
-	'Описание для Справедливость', //Описание для Справедливость
-	'Описание для Отшельник',  //Описание для Отшельник
-	'Описание для Колесо Фортуны', //Описание для Колесо Фортуны
-	'Описание для Сила',  //Описание для Сила
-	'Описание для Повешенный',  //Описание для Повешенный
-	'Описание для Смерть',  //Описание для Смерть
-	'Описание для Умеренность',  //Описание для Умеренность
-	'Описание для Дьявол',  //Описание для Дьявол
-	'Описание для Башня',  //Описание для Башня
-	'Описание для Звезда',  //Описание для Звезда
-	'Описание для Луна',  //Описание для Луна
-	'Описание для Солнце', //Описание для Солнце
-	'Описание для Суд',  //Описание для Суд
-	'Описание для Мир', //Описание для Мир
-	'Описание для Шут',  //писание для Шут
-
-	
-    // Добавьте описания для всех арканов
+  '',  // Описание для Мага
+  '', // Описание для Жрицы
+  '', //Описание для Императрицы
+	'', //Описание для Император
+	'', //Описание для Верховный Жрец
+	'',  //Описание для Влюбленные
+	'',  //Описание для Колесница
+	'', //Описание для Справедливость
+	'',  //Описание для Отшельник
+	'', //Описание для Колесо Фортуны
+	'',  //Описание для Сила
+	'',  //Описание для Повешенный
+	'',  //Описание для Смерть
+	'',  //Описание для Умеренность
+	'',  //Описание для Дьявол
+	'',  //Описание для Башня
+	'',  //Описание для Звезда
+	'',  //Описание для Луна
+	'', //Описание для Солнце
+	'',  //Описание для Суд
+	'', //Описание для Мир
+	'',  //писание для Шут
+    
   ];
+
+
+  // ... Ваши имена и описания арканов ...
 
   const tarotCardsContainer = document.getElementById('tarot-cards');
   tarotCardsContainer.innerHTML = '';
@@ -92,16 +102,48 @@ function calculateTarot() {
   positions.forEach((position, index) => {
     const cardNumber = position === 0 ? 22 : position;
     const cardName = arcanaNames[cardNumber - 1];
-    const cardDescription = arcanaDescriptions[cardNumber - 1]; // Добавьте описание для каждого аркана
+    const cardDescription = arcanaDescriptions[cardNumber - 1];
     const cardElement = document.createElement('div');
     cardElement.classList.add('tarot-card');
     cardElement.innerHTML = `
       <strong>Позиция ${index + 1}:</strong> ${cardNumber} - ${cardName}
       <img src="images/${cardNumber}.jpg" class="tarot-image" alt="${cardName}">
       <div class="tarot-description">${cardDescription}</div>
+      <p class="position-description"></p> <!-- Добавлен новый элемент для описания позиции -->
     `;
     tarotCardsContainer.appendChild(cardElement);
   });
+
+  // Добавление описаний к позициям
+  const descriptions = [
+    'Задача души и талант',
+    'Психологическая школа взросления',
+    'Экзаменатор',
+    'Внутренний конфликт',
+    'Ценности',
+    'Дар'
+  ];
+
+  // Получение всех элементов с классом 'position-description'
+  const positionDescriptions = document.querySelectorAll('.position-description');
+
+  // Присвоение каждому элементу соответствующего описания
+  positionDescriptions.forEach((descriptionElement, index) => {
+    descriptionElement.textContent = descriptions[index];
+  });
+
+  // Текст в конце карт
+  const resultText = document.getElementById('result-text');
+  resultText.innerHTML = `
+    <p></p>
+    
+  `;
+
+  // Обновление ссылки после расчета
+  const resultLinks = document.getElementById('result-links');
+  resultLinks.innerHTML = ''; // Очистка предыдущего содержимого
+  resultLinks.innerHTML += '<a href="https://t.me/schepkina_svetlana">Telegram</a><br>';
+  resultLinks.innerHTML += '<a href="https://example.com/new-link">Перейти на главную страницу</a><br>';
 }
 </script>
 
