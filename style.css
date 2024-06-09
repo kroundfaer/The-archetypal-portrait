@@ -1,127 +1,140 @@
-/* Основные стили */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
-  background: #f0e7e7;
-  text-align: center; /* Центрирование текста */
 }
 
 h2 {
-  color: #333;
-  margin-bottom: 2rem; /* Добавлено нижнее поле для отступа */
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4a69bd;
+  font-size: 2rem;
 }
 
 .input-group {
-  margin: 1rem auto; /* Центрирование группы ввода */
-  display: flex;
-  justify-content: center; /* Центрирование элементов внутри группы */
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 15px;
 }
 
 .input-group label {
-  margin-right: 0.5rem;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .input-group input {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  margin-right: 1rem; /* Добавлено правое поле для отступа */
+  width: 91%;
+  padding: 12px;
+  border: 2px solid #4a69bd;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #78e08f;
+  outline: none;
 }
 
 button {
-  display: block;
-  width: 200px;
-  padding: 1rem;
-  margin: 2rem auto; /* Увеличен верхний и нижний отступы */
-  border: none;
-  border-radius: 0.3rem;
-  background: #986acc;
+  width: 100%;
+  max-width: 320px;
+  padding: 12px;
+  background-color: #4a69bd;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
+
 button:hover {
-  background-color: #2980b9; /* Замените на желаемый цвет */
-  transform: scale(1.1); /* Увеличение размера */
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #78e08f;
 }
 
-/* Возвращение к исходному размеру при нажатии */
-button:active {
-  \transform: scale(1); /* Возврат к исходному размеру */
-  \transition: transform 0.1s ease;
-}
-/* Определение ключевых кадров для анимации вибрации */
-@keyframes vibrate {
-  0%, 100% { transform: translate(0); }
-  
-  100% { transform: translate(-50px, -50px -50px -50px); }
-}
-
-
-/* Стили для карточек Таро */
-#tarot-cards {
+.tarot-layout {
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 1rem;
+  justify-content: center;
 }
 
-.p {
-  display: inline-block; /* Блочно-строчное отображение */
-  padding: 10px 20px; /* Внутренние отступы */
-  margin: 5px; /
-  background: #333
-
+.tarot-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
+
 .tarot-card {
-  width: calc(33.333% - 2rem);
-  margin: 1rem;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 1.0rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  overflow: clip;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  margin: 10px;
+  flex: 0 1 calc(25% - 20px); /* Уменьшенный размер карточек */
+}
+
+.tarot-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
 }
 
 .tarot-card strong {
-  display: block;
-  padding: 1.0rem;
   background: #333;
   color: white;
-  text-align: center; /* Центрирование заголовка карточки */
+  text-align: center;
+  padding: 1rem;
 }
 
 .tarot-image {
   width: 100%;
-  height: auto;
+  display: block;
 }
 
 .tarot-description {
-  padding: 1.0rem;
-  color: #666;
+  padding: 1rem;
+  background: #f7f7f7;
+  text-align: center;
 }
 
-/* Стили для текста и ссылок после расчета */
+.position-description {
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
 #result-text {
-  
-}
-#result-links {
-  text-align: center; /* Выравнивание содержимого по центру */
-  padding: 20px; /* Отступы со всех сторон */
-  display: block; /* Блочный тип отображения для возможности выравнивания */
-  overflow: hidden; /* Обрезка содержимого, выходящего за границы */
-  white-space: nowrap; /* Запрет на перенос строк */
+  text-align: center;
+  margin-top: 2rem;
 }
 
-/* Стили для всех ссылок внутри элемента с id="result-links" */
+#result-links a {
+  color: #4a69bd;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+#result-links a:hover {
+  color: #78e08f;
+}
+
 #result-links a {
   display: inline-block; /* Блочно-строчное отображение */
   padding: 10px 20px; /* Внутренние отступы */
   margin: 5px; /* Внешние отступы */
   text-decoration: none; /* Убрать подчеркивание */
   color: white; /* Цвет текста */
-  background-color: #986acc; /* Фоновый цвет */
+  background-color: #4a69bd; /* Фоновый цвет */
   border: none; /* Убрать границу */
   border-radius: 5px; /* Скругление углов */
   font-size: 16px; /* Размер шрифта */
@@ -131,44 +144,23 @@ button:active {
 
 /* Стили для ссылок при наведении курсора мыши */
 #result-links a:hover {
-  background-color: #2980b9; /* Темный фон при наведении */
+  background-color: #78e08f; /* Темный фон при наведении */
+  color: white;
 }
 
-
-
-
-/* Адаптивность для мобильных устройств */
+/* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
-  .input-group {
-    flex-direction: column; /* Элементы группы ввода будут располагаться вертикально */
-    align-items: center; /* Центрирование элементов по горизонтали */
-  }
-
-  .input-group label,
-  .input-group input {
-    width: 90%; /* Полная ширина для лучшей видимости */
-    margin: 0.5rem 0; /* Отступы сверху и снизу для разделения элементов */
-  }
-
-  button {
-    width: 90%; /* Кнопка на полную ширину */
-  }
-
   .tarot-card {
-    width: calc(100% - 2rem); /* Карточки Таро на полную ширину */
+    flex: 0 1 calc(50% - 20px); /* Для планшетов */
   }
 }
 
 @media (max-width: 480px) {
-  h2 {
-    font-size: 1.5rem; /* Уменьшенный размер шрифта для заголовка */
+  .tarot-card {
+    flex: 0 1 calc(100% - 20px); /* Для смартфонов */
   }
 
-  #result-links a {
-    padding: 8px 16px; /* Уменьшенные внутренние отступы */
-    font-size: 14px; /* Уменьшенный размер шрифта */
+  .input-group input, button {
+    width: 90%;
   }
 }
-
-
-
