@@ -26,11 +26,22 @@
 
 <button onclick="calculateTarot()">Рассчитать</button>
 
-<div id="tarot-cards"></div>
+<div id="tarot-cards" class="tarot-layout"></div>
+
 
 <!-- Место для текста и ссылок после расчета -->
+
 <div id="result-text"></div>
-<div id="result-links"></div>
+
+<div id="result-links">
+  
+
+
+
+
+</div>
+
+
 
 <script>
 function mod22(num) {
@@ -58,41 +69,60 @@ function calculateTarot() {
   ];
 
   const arcanaNames = [
-  'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
+    'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
     'Колесница', 'Справедливость', 'Отшельник', 'Колесо Фортуны', 'Сила', 'Повешенный',
     'Смерть', 'Умеренность', 'Дьявол', 'Башня', 'Звезда', 'Луна', 'Солнце', 'Суд',
     'Мир', 'Шут'
-    // ... Ваши имена арканов ...
   ];
 
   const arcanaDescriptions = [
-  'Описание для Мага',  // Описание для Мага
-  'Описание для Жрицы', // Описание для Жрицы
-  'Описание для Императрицы', //Описание для Императрицы
-	'Описание для Император', //Описание для Император
-	'Описание для Верховный Жрец', //Описание для Верховный Жрец
-	'Описание для Влюбленные',  //Описание для Влюбленные
-	'Описание для Колесница',  //Описание для Колесница
-	'Описание для Справедливость', //Описание для Справедливость
-	'Описание для Отшельник',  //Описание для Отшельник
-	'Описание для Колесо Фортуны', //Описание для Колесо Фортуны
-	'Описание для Сила',  //Описание для Сила
-	'Описание для Повешенный',  //Описание для Повешенный
-	'Описание для Смерть',  //Описание для Смерть
-	'Описание для Умеренность',  //Описание для Умеренность
-	'Описание для Дьявол',  //Описание для Дьявол
-	'Описание для Башня',  //Описание для Башня
-	'Описание для Звезда',  //Описание для Звезда
-	'Описание для Луна',  //Описание для Луна
-	'Описание для Солнце', //Описание для Солнце
-	'Описание для Суд',  //Описание для Суд
-	'Описание для Мир', //Описание для Мир
-	'Описание для Шут',  //писание для Шут
+  '',  // Описание для Мага
+  '', // Описание для Жрицы
+  '', //Описание для Императрицы
+	'', //Описание для Император
+	'', //Описание для Верховный Жрец
+	'',  //Описание для Влюбленные
+	'',  //Описание для Колесница
+	'', //Описание для Справедливость
+	'',  //Описание для Отшельник
+	'', //Описание для Колесо Фортуны
+	'',  //Описание для Сила
+	'',  //Описание для Повешенный
+	'',  //Описание для Смерть
+	'',  //Описание для Умеренность
+	'',  //Описание для Дьявол
+	'',  //Описание для Башня
+	'',  //Описание для Звезда
+	'',  //Описание для Луна
+	'', //Описание для Солнце
+	'',  //Описание для Суд
+	'', //Описание для Мир
+	'',  //писание для Шу
     // ... Ваши описания арканов ...
+  ];
+
+  // Описания позиций
+  const descriptions = [
+    'Задача души и талант',
+    'Психологическая школа взросления',
+    'Экзаменатор',
+    'Внутренний конфликт',
+    'Ценности',
+    'Дар'
   ];
 
   const tarotCardsContainer = document.getElementById('tarot-cards');
   tarotCardsContainer.innerHTML = '';
+
+  // Создание рядов для карт
+  const firstRow = document.createElement('div');
+  firstRow.classList.add('tarot-row');
+
+  const secondRow = document.createElement('div');
+  secondRow.classList.add('tarot-row');
+
+  const thirdRow = document.createElement('div');
+  thirdRow.classList.add('tarot-row');
 
   positions.forEach((position, index) => {
     const cardNumber = position === 0 ? 22 : position;
@@ -104,28 +134,26 @@ function calculateTarot() {
       <strong>Позиция ${index + 1}:</strong> ${cardNumber} - ${cardName}
       <img src="images/${cardNumber}.jpg" class="tarot-image" alt="${cardName}">
       <div class="tarot-description">${cardDescription}</div>
+      <p class="position-description">${descriptions[index]}</p> <!-- Описание позиции -->
     `;
-    tarotCardsContainer.appendChild(cardElement);
+
+    // Распределение карт по рядам
+    if (index < 3) {
+      firstRow.appendChild(cardElement);
+    } else if (index < 5) {
+      secondRow.appendChild(cardElement);
+    } else {
+      cardElement.classList.add('central-card');
+      thirdRow.appendChild(cardElement);
+    }
   });
 
-  // Отображение всех шести вариантов текста описания
-  const resultText = document.getElementById('result-text');
-  resultText.innerHTML = `
-    <p>1 позиция - задача души и талант</p>
-    <p>2 позиция - психологическая школа взросления</p>
-    <p>3 позиция - экзаменатор</p>
-    <p>4 позиция - внутренний конфликт</p>
-    <p>5 позиция - ценности</p>
-    <p>6 позиция - дар</p>
-  `;
-
-  // Обновление ссылки после расчета
-  const resultLinks = document.getElementById('result-links');
-  resultLinks.innerHTML = '<a href="https://t.me/schepkina_svetlana">Telegram</a>';
+  // Добавление рядов в контейнер
+  tarotCardsContainer.appendChild(firstRow);
+  tarotCardsContainer.appendChild(secondRow);
+  tarotCardsContainer.appendChild(thirdRow);
 }
 </script>
 
 </body>
 </html>
-
-
