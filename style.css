@@ -1,122 +1,154 @@
-/* Основные стили */
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
-  background: #f0e7e7;
-  text-align: center; /* Центрирование текста */
 }
 
 h2 {
-  color: #333;
-  margin-bottom: 2rem; /* Добавлено нижнее поле для отступа */
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4a69bd;
+  font-size: 2rem;
 }
 
 .input-group {
-  margin: 1rem auto; /* Центрирование группы ввода */
-  display: flex;
-  justify-content: center; /* Центрирование элементов внутри группы */
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 15px;
 }
 
 .input-group label {
-  margin-right: 0.5rem;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .input-group input {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  margin-right: 1rem; /* Добавлено правое поле для отступа */
+  width: 100%; /* Изменено с 91% на 100% */
+  padding: 12px;
+  border: 2px solid #4a69bd;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #78e08f;
+  outline: none;
 }
 
 button {
-  display: block;
-  width: 200px;
-  padding: 1rem;
-  margin: 2rem auto; /* Увеличен верхний и нижний отступы */
-  border: none;
-  border-radius: 0.3rem;
-  background: #986acc;
+  width: 100%;
+  max-width: 320px;
+  padding: 12px;
+  background-color: #4a69bd;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-/* Стили для карточек Таро */
-#tarot-cards {
+button:hover {
+  background-color: #78e08f;
+}
+
+.tarot-layout {
+  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 1rem;
+  justify-content: center;
+}
+
+.tarot-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .tarot-card {
-  width: calc(33.333% - 2rem);
-  margin: 1rem;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 1.0rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  overflow: clip;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  margin: 10px;
+  flex: 0 1 calc(25% - 20px);
+}
+
+.tarot-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
 }
 
 .tarot-card strong {
-  display: block;
-  padding: 1.0rem;
   background: #333;
   color: white;
-  text-align: center; /* Центрирование заголовка карточки */
+  text-align: center;
+  padding: 1rem;
 }
 
 .tarot-image {
   width: 100%;
-  height: auto;
+  display: block;
 }
 
 .tarot-description {
-  padding: 1.0rem;
-  color: #666;
+  padding: 1rem;
+  background: #f7f7f7;
+  text-align: center;
 }
 
-/* Стили для текста и ссылок после расчета */
-#result-text,
-#result-links {
-  text-align: center; /* Выравнивание содержимого по центру */
-  padding: 20px; /* Отступы со всех сторон */
-  display: block; /* Блочный тип отображения для возможности выравнивания */
-  overflow: hidden; /* Обрезка содержимого, выходящего за границы */
-  white-space: nowrap; /* Запрет на перенос строк */
+.position-description {
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+#result-text {
+  text-align: center;
+  margin-top: 2rem;
 }
 
 #result-links a {
-  display: inline-block; /* Инлайн-блочный тип отображения для ссылки */
-  margin: 0 auto; /* Автоматические отступы слева и справа для центрирования */
-  text-decoration: none; /* Убрать подчеркивание текста ссылки */
-  padding: 10px 15px; /* Отступы внутри ссылки */
-  border: 1px solid #007bff; /* Граница вокруг ссылки */
-  border-radius: 4px; /* Скругление углов границы */
-  background-color: #007bff; /* Фоновый цвет ссылки */
-  color: white; /* Цвет текста ссылки */
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: #4a69bd;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Добавлено изменение цвета текста */
 }
 
 #result-links a:hover {
-  background-color: #0056b3; /* Фоновый цвет ссылки при наведении */
+  background-color: #78e08f;
+  color: white; /* Не нужно менять, так как уже белый */
 }
 
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .tarot-card {
-    width: calc(50% - 2rem);
+    flex: 0 1 calc(50% - 20px);
   }
 }
 
 @media (max-width: 480px) {
   .tarot-card {
-    width: calc(100% - 2rem);
+    flex: 0 1 calc(100% - 20px);
   }
-}
 
-
-
-#result-links {
-  overflow: auto; /* Добавляет прокрутку, если содержимое выходит за границы */
+  .input-group input, button {
+    width: 100%; /* Изменено с 90% на 100% */
+  }
 }
