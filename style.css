@@ -4,12 +4,26 @@ body {
   color: #333;
   line-height: 1.6;
   padding: 20px;
+  padding-top: 10px; /* Уменьшено с 50px до 10px */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-width: 100vw;
   margin: 0;
+}
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+
+#calculateButton {
+  margin-top: 20px;
 }
 
 h2 {
@@ -17,12 +31,21 @@ h2 {
   margin-bottom: 20px;
   color: #4a69bd;
   font-size: 2rem;
+  width: 80%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Добавляет тень к тексту */
+  letter-spacing: 1.2px; /* Увеличивает расстояние между буквами */
+  font-weight: bold; /* Делает текст более жирным */
+  display: inline-block; /* Делает заголовок встроенным */
 }
 
 .input-group {
   width: 100%;
   max-width: 320px;
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .input-group label {
@@ -32,7 +55,7 @@ h2 {
 }
 
 .input-group input {
-  width: 100%; /* Изменено с 91% на 100% */
+  width: 100%;
   padding: 12px;
   border: 2px solid #4a69bd;
   border-radius: 8px;
@@ -43,6 +66,33 @@ h2 {
   border-color: #78e08f;
   outline: none;
 }
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.button1 {
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  padding: 12px;
+  background-color: #4a69bd;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button1:hover {
+  background-color: #78e08f;
+}
+
+
 
 button {
   width: 100%;
@@ -90,10 +140,10 @@ button:hover {
 }
 
 .tarot-card strong {
-  background: #333;
-  color: white;
+  color: #333;
   text-align: center;
-  padding: 1rem;
+  padding: 2rem;
+  
 }
 
 .tarot-image {
@@ -111,6 +161,7 @@ button:hover {
   font-style: italic;
   text-align: center;
   margin-top: 0.5rem;
+  font-size: 1rem;
 }
 
 #result-text {
@@ -134,21 +185,7 @@ button:hover {
 
 #result-links a:hover {
   background-color: #78e08f;
-  color: white; /* Не нужно менять, так как уже белый */
+  color: rgb(167, 37, 37); /* Не нужно менять, так как уже белый */
 }
 
-@media (max-width: 768px) {
-  .tarot-card {
-    flex: 0 1 calc(50% - 20px);
-  }
-}
 
-@media (max-width: 480px) {
-  .tarot-card {
-    flex: 0 1 calc(100% - 20px);
-  }
-
-  .input-group input, button {
-    width: 100%; /* Изменено с 90% на 100% */
-  }
-}
