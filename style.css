@@ -7,9 +7,15 @@ h2 {
   text-align: center;
 }
 
-#text {
-  font-weight: bold;
+.position-description {
+  font-weight: bold; /* Делает текст жирным */
+  color: #557a95; /* Изменяет цвет текста на красный */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
+
+
 
 button {
   font-size: 17px;
@@ -33,10 +39,7 @@ button:hover {
 div {
   font-weight: bold;
 }
-.position-description {
-  font-weight: bold; /* Делает текст жирным */
-  color: #557a95; /* Изменяет цвет текста на красный */
-}
+
 
 a {
   display: block;
@@ -103,11 +106,7 @@ a:hover {
   outline: none;
 }
 
-.position-description {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
-}
+
 
 .overlay {
   display: none;
