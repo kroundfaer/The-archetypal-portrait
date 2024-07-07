@@ -178,10 +178,12 @@ function calculateTarot() {
     }
 
     cardElement.addEventListener('click', function() {
-      document.getElementById('overlay-card').innerHTML = this.innerHTML;
-      document.getElementById('overlay').style.display = 'flex';
-    });
-  });
+  const imageElement = this.querySelector('.tarot-image');
+  
+  document.getElementById('overlay-card').innerHTML = imageElement.outerHTML;
+  document.getElementById('overlay').style.display = 'flex';
+});
+});
 
   tarotCardsContainer.appendChild(firstRow);
   tarotCardsContainer.appendChild(secondRow);
