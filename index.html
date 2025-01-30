@@ -65,135 +65,155 @@
 
 <div id="footer">
   <p></p>
-  <a href="https://t.me/your_22_keys" class="button1">Telegram</a>
+  <div id="info-block" style="text-align: center; padding: 10px; font-size: 16px; background-color: #f0f0f0; border-radius: 10px; display: none;">
+    <p style="font-size: 18px;">Всего в Портрете более 35 позиций, эти 8 - основные:</p>
+    <ol style="text-align: left; display: inline-block; list-style-position: inside;">
+      <li><span style="font-weight: bold;">Ядро твоей личности</span> — <span style="font-weight: normal;">с чем ты пришла в этот мир, какие качества и ресурсы получила с рождения</span></li>
+      <br>
+      <li><span style="font-weight: bold;">Твои уроки</span> — <span style="font-weight: normal;">жизненные испытания и задачи, которые тебе нужно пройти. Понимание и прохождение этих уроков поможет не застрять на месте и достичь своих целей</span></li>
+      <br>
+      <li><span style="font-weight: bold;">Твой "экзамен на зрелость"</span> — <span style="font-weight: normal;">что поможет тебе достичь истинной осознанности и зрелости.</span></li>
+      <br>
+      <li><span style="font-weight: bold;">Что тебе мешает</span> — <span style="font-weight: normal;">скрытые страхи, блоки и комплексы, которые ты скорее всего даже не осознаешь в полной мере, но именно они мешает тебе реализовать свой потенциал и быть счастливой</span></li>
+      <br>
+      <li><span style="font-weight: bold;">Твои ценности</span> — <span style="font-weight: normal;">что для тебя действительно важно и какой ты хочешь быть в глазах окружающих. Часто этот образ становится «маской», которую ты носишь в обществе.</span></li>
+      <br>
+      <li><span style="font-weight: bold;">Твои скрытые таланты</span> — <span style="font-weight: normal;">потенциал, который откроется, когда ты разберёшься с внутренними конфликтами и страхами. Это твоя энергия для развития и реализации</span></li>
+      <br>
+      <li><span style="font-weight: bold;">Твоя миссия</span> — <span style="font-weight: normal;">главное предназначение в жизни. То, ради чего ты здесь.</span></li>
+      <br>
+      <li><span style="font-weight: bold;">Твой Дар</span> — <span style="font-weight: normal;">то, что поможет тебе в реализации этой миссии</span></li>
+    </ol>
+    <p style="font-size: 18px;">Чтобы узнать больше приглашаю в мой уютный тг-канал "22 ключа к себе"</p>
+  </div>
+  <a href="https://t.me/schepkina_svetlana" class="button1">Telegram</a>
   <!-- <a> новая ссылка</a> -->
 
-</div>
 
-<script>
-function mod22(num) {
-  return num > 22 ? num - 22 : num;
-}
-
-function calculateTarot() {
-  const day = parseInt(document.getElementById('day').value);
-  const month = parseInt(document.getElementById('month').value);
-  const year = parseInt(document.getElementById('year').value);
-  if (isNaN(day) || isNaN(month) || isNaN(year)) {
-    alert('Пожалуйста, введите корректные дату рождения.');
-    return;
-  }
-
-  const yearSum = [...year.toString()].reduce((a, b) => parseInt(a) + parseInt(b), 0);
-
-  const positions = [
-    mod22(day),
-    month,
-    mod22(yearSum),
-    mod22(day + month),
-    mod22(month + yearSum),
-    mod22(mod22(day + month) + mod22(month + yearSum))
-  ];
-  const position7 = mod22(positions[0] + positions[4]);
-  const position8 = mod22(positions[1] + positions[5]);
-  positions.push(position7, position8);
-  const arcanaNames = [
-    'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
-    'Колесница', 'Справедливость', 'Отшельник', 'Колесо Фортуны', 'Сила', 'Повешенный',
-    'Смерть', 'Умеренность', 'Дьявол', 'Башня', 'Звезда', 'Луна', 'Солнце', 'Суд',
-    'Мир', 'Шут'
-  ];
-
-  const arcanaDescriptions = [
-  '',  // Описание для Мага
-  '', // Описание для Жрицы
-  '', //Описание для Императрицы
-	'', //Описание для Император
-	'', //Описание для Верховный Жрец
-	'',  //Описание для Влюбленные
-	'',  //Описание для Колесница
-	'', //Описание для Справедливость
-	'',  //Описание для Отшельник
-	'', //Описание для Колесо Фортуны
-	'',  //Описание для Сила
-	'',  //Описание для Повешенный
-	'',  //Описание для Смерть
-	'',  //Описание для Умеренность
-	'',  //Описание для Дьявол
-	'',  //Описание для Башня
-	'',  //Описание для Звезда
-	'',  //Описание для Луна
-	'', //Описание для Солнце
-	'',  //Описание для Суд
-	'', //Описание для Мир
-	'',  //писание для Шут
-    // ... Ваши описания арканов ...
-  ];
-
-  // Описания позиций
-
-
-  const descriptions = [
-    'БАЗА, с которой вы пришли в этот мир',
-    'Жизненные «уроки»',
-    '«Экзамен»',
-    'Болевая точка – страхи и комплексы',
-    'Ваши ценности',
-    'Скрытые таланты и способности',
-    'Миссия жизни',
-    'Дар для реализации миссии'
-  ];
-
-  const tarotCardsContainer = document.getElementById('tarot-cards');
-  tarotCardsContainer.innerHTML = '';
-
-  const firstRow = document.createElement('div');
-  firstRow.classList.add('tarot-row');
-
-  const secondRow = document.createElement('div');
-  secondRow.classList.add('tarot-row');
-
-  const thirdRow = document.createElement('div');
-  thirdRow.classList.add('tarot-row');
-
-  const fourthRow = document.createElement('div');
-  fourthRow.classList.add('tarot-row');
-
-  positions.forEach((position, index) => {
-    const cardNumber = position === 0 ? 22 : position;
-    const cardName = arcanaNames[cardNumber - 1];
-    const cardDescription = arcanaDescriptions[cardNumber - 1];
-    const cardElement = document.createElement('div');
-    cardElement.classList.add('tarot-card');
-    cardElement.innerHTML = `
-      <div style="text-align: center;"><strong>Позиция ${index + 1}</strong></div>
-      <img src="images/${cardNumber}.jpg" class="tarot-image">
-      <div style="text-align: center; margin: 0; padding: 0;">
-        <strong style="margin: 0; padding: 0;">${cardNumber}</strong> - ${cardName}
-        <div class="tarot-description" style="margin: 0; padding: 0;">${cardDescription}</div>
-      </div>
-      <p class="position-description">${descriptions[index]}</p>
-    `;
-
-    if (index < 3) {
-      firstRow.appendChild(cardElement);
-    } else if (index < 5) {
-      secondRow.appendChild(cardElement);
-    } else if (index === 5) {
-      thirdRow.appendChild(cardElement);
-    } else {
-      fourthRow.appendChild(cardElement);
+  <script>
+    function mod22(num) {
+      return num > 22 ? num - 22 : num;
     }
-
-    cardElement.addEventListener('click', function() {
-  const imageElement = this.querySelector('.tarot-image');
-  
-  document.getElementById('overlay-card').innerHTML = imageElement.outerHTML;
-  document.getElementById('overlay').style.display = 'flex';
-});
-});
-
-  tarotCardsContainer.appendChild(firstRow);
+    
+    function calculateTarot() {
+      const day = parseInt(document.getElementById('day').value);
+      const month = parseInt(document.getElementById('month').value);
+      const year = parseInt(document.getElementById('year').value);
+      if (isNaN(day) || isNaN(month) || isNaN(year)) {
+        alert('Пожалуйста, введите корректные дату рождения.');
+        return;
+      }
+    
+      const yearSum = [...year.toString()].reduce((a, b) => parseInt(a) + parseInt(b), 0);
+    
+      const positions = [
+        mod22(day),
+        month,
+        mod22(yearSum),
+        mod22(day + month),
+        mod22(month + yearSum),
+        mod22(mod22(day + month) + mod22(month + yearSum))
+      ];
+      const position7 = mod22(positions[0] + positions[4]);
+      const position8 = mod22(positions[1] + positions[5]);
+      positions.push(position7, position8);
+      const arcanaNames = [
+        'Маг', 'Жрица', 'Императрица', 'Император', 'Верховный Жрец', 'Влюбленные',
+        'Колесница', 'Справедливость', 'Отшельник', 'Колесо Фортуны', 'Сила', 'Повешенный',
+        'Смерть', 'Умеренность', 'Дьявол', 'Башня', 'Звезда', 'Луна', 'Солнце', 'Суд',
+        'Мир', 'Шут'
+      ];
+    
+      const arcanaDescriptions = [
+      '',  // Описание для Мага
+      '', // Описание для Жрицы
+      '', //Описание для Императрицы
+        '', //Описание для Император
+        '', //Описание для Верховный Жрец
+        '',  //Описание для Влюбленные
+        '',  //Описание для Колесница
+        '', //Описание для Справедливость
+        '',  //Описание для Отшельник
+        '', //Описание для Колесо Фортуны
+        '',  //Описание для Сила
+        '',  //Описание для Повешенный
+        '',  //Описание для Смерть
+        '',  //Описание для Умеренность
+        '',  //Описание для Дьявол
+        '',  //Описание для Башня
+        '',  //Описание для Звезда
+        '',  //Описание для Луна
+        '', //Описание для Солнце
+        '',  //Описание для Суд
+        '', //Описание для Мир
+        '',  //писание для Шут
+        // ... Ваши описания арканов ...
+      ];
+    
+      // Описания позиций
+    
+    
+      const descriptions = [
+        'БАЗА, с которой вы пришли в этот мир',
+        'Жизненные «уроки»',
+        '«Экзамен»',
+        'Болевая точка – страхи и комплексы',
+        'Ваши ценности',
+        'Скрытые таланты и способности',
+        'Миссия жизни',
+        'Дар для реализации миссии'
+      ];
+    
+      const tarotCardsContainer = document.getElementById('tarot-cards');
+      tarotCardsContainer.innerHTML = '';
+    
+      const firstRow = document.createElement('div');
+      firstRow.classList.add('tarot-row');
+    
+      const secondRow = document.createElement('div');
+      secondRow.classList.add('tarot-row');
+    
+      const thirdRow = document.createElement('div');
+      thirdRow.classList.add('tarot-row');
+    
+      const fourthRow = document.createElement('div');
+      fourthRow.classList.add('tarot-row');
+    
+      positions.forEach((position, index) => {
+        const cardNumber = position === 0 ? 22 : position;
+        const cardName = arcanaNames[cardNumber - 1];
+        const cardDescription = arcanaDescriptions[cardNumber - 1];
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('tarot-card');
+        cardElement.innerHTML = `
+          <div style="text-align: center;"><strong>Позиция ${index + 1}</strong></div>
+          <img src="images/${cardNumber}.jpg" class="tarot-image">
+          <div style="text-align: center; margin: 0; padding: 0;">
+            <strong style="margin: 0; padding: 0;">${cardNumber}</strong> - ${cardName}
+            <div class="tarot-description" style="margin: 0; padding: 0;">${cardDescription}</div>
+          </div>
+          <p class="position-description">${descriptions[index]}</p>
+        `;
+    
+        if (index < 3) {
+          firstRow.appendChild(cardElement);
+        } else if (index < 5) {
+          secondRow.appendChild(cardElement);
+        } else if (index === 5) {
+          thirdRow.appendChild(cardElement);
+        } else {
+          fourthRow.appendChild(cardElement);
+        }
+    
+        cardElement.addEventListener('click', function() {
+      const imageElement = this.querySelector('.tarot-image');
+      
+      document.getElementById('overlay-card').innerHTML = imageElement.outerHTML;
+      document.getElementById('overlay').style.display = 'flex';
+    });
+    });
+    
+    tarotCardsContainer.appendChild(firstRow);
   tarotCardsContainer.appendChild(secondRow);
   tarotCardsContainer.appendChild(thirdRow);
   tarotCardsContainer.appendChild(fourthRow); // Добавление четвертого ряда
@@ -201,8 +221,11 @@ function calculateTarot() {
   document.getElementById('overlay').addEventListener('click', function() {
     this.style.display = 'none';
   });
+
+  // Show the info-block
+  document.getElementById('info-block').style.display = 'block';
 }
-</script>
+    </script>
 
 </body>
 </html>
