@@ -121,6 +121,9 @@ a:hover {
   transition: transform 0.3s ease-in-out;
 }
 
+
+
+
 @media (max-width: 1200px) {
   .tarot-layout {
     transform: scale(1.0);
@@ -129,18 +132,19 @@ a:hover {
 
 @media (max-width: 992px) {
   .tarot-layout {
-    transform: scale(0.9);
+    transform: scale(1.0);
   }
 }
 
 @media (max-width: 768px) {
+  
   .tarot-layout {
-    transform: scale(0.8);
+    transform: scale(0.9);
   }
 }
 
 @media (max-width: 576px) {
   .tarot-layout {
-    transform: scale(0.7);
+    transform: scale(0.9);
   }
 }
