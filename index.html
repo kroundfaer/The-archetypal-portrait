@@ -86,7 +86,7 @@
     </ol>
     <p style="font-size: 18px;">Чтобы узнать больше приглашаю в мой уютный тг-канал "22 ключа к себе"</p>
   </div>
-  <a href="https://t.me/your_22_keys" class="button1">Telegram</a>
+  <a href="https://t.me/schepkina_svetlana" class="button1">Telegram</a>
   <!-- <a> новая ссылка</a> -->
 
 
@@ -153,77 +153,81 @@
       // Описания позиций
     
     
-      const descriptions = [
-        'БАЗА, с которой вы пришли в этот мир',
-        'Жизненные «уроки»',
-        '«Экзамен»',
-        'Болевая точка – страхи и комплексы',
-        'Ваши ценности',
-        'Скрытые таланты и способности',
-        'Миссия жизни',
-        'Дар для реализации миссии'
-      ];
-    
       const tarotCardsContainer = document.getElementById('tarot-cards');
-      tarotCardsContainer.innerHTML = '';
-    
-      const firstRow = document.createElement('div');
-      firstRow.classList.add('tarot-row');
-    
-      const secondRow = document.createElement('div');
-      secondRow.classList.add('tarot-row');
-    
-      const thirdRow = document.createElement('div');
-      thirdRow.classList.add('tarot-row');
-    
-      const fourthRow = document.createElement('div');
-      fourthRow.classList.add('tarot-row');
-    
-      positions.forEach((position, index) => {
-        const cardNumber = position === 0 ? 22 : position;
-        const cardName = arcanaNames[cardNumber - 1];
-        const cardDescription = arcanaDescriptions[cardNumber - 1];
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('tarot-card');
-        cardElement.innerHTML = `
-          <div style="text-align: center;"><strong>Позиция ${index + 1}</strong></div>
-          <img src="images/${cardNumber}.jpg" class="tarot-image">
-          <div style="text-align: center; margin: 0; padding: 0;">
-            <strong style="margin: 0; padding: 0;">${cardNumber}</strong> - ${cardName}
-            <div class="tarot-description" style="margin: 0; padding: 0;">${cardDescription}</div>
-          </div>
-          <p class="position-description">${descriptions[index]}</p>
-        `;
-    
-        if (index < 3) {
-          firstRow.appendChild(cardElement);
-        } else if (index < 5) {
-          secondRow.appendChild(cardElement);
-        } else if (index === 5) {
-          thirdRow.appendChild(cardElement);
-        } else {
-          fourthRow.appendChild(cardElement);
-        }
-    
-        cardElement.addEventListener('click', function() {
-      const imageElement = this.querySelector('.tarot-image');
-      
-      document.getElementById('overlay-card').innerHTML = imageElement.outerHTML;
-      document.getElementById('overlay').style.display = 'flex';
-    });
-    });
-    
-    tarotCardsContainer.appendChild(firstRow);
-  tarotCardsContainer.appendChild(secondRow);
-  tarotCardsContainer.appendChild(thirdRow);
-  tarotCardsContainer.appendChild(fourthRow); // Добавление четвертого ряда
+tarotCardsContainer.innerHTML = '';
 
-  document.getElementById('overlay').addEventListener('click', function() {
-    this.style.display = 'none';
+const firstRow = document.createElement('div');
+firstRow.classList.add('tarot-row');
+
+const secondRow = document.createElement('div');
+secondRow.classList.add('tarot-row');
+
+const thirdRow = document.createElement('div');
+thirdRow.classList.add('tarot-row');
+
+const fourthRow = document.createElement('div');
+fourthRow.classList.add('tarot-row');
+
+positions.forEach((position, index) => {
+  const cardNumber = position === 0 ? 22 : position;
+  const cardName = arcanaNames[cardNumber - 1];
+  const cardDescription = arcanaDescriptions[cardNumber - 1];
+  const cardElement = document.createElement('div');
+  cardElement.classList.add('tarot-card');
+  cardElement.innerHTML = `
+    <div style="text-align: center;"><strong>Позиция ${index + 1}</strong></div>
+    <img src="images/${cardNumber}.jpg" class="tarot-image">
+    <div style="text-align: center; margin: 0; padding: 0;">
+      <strong style="margin: 0; padding: 0;">${cardNumber}</strong> - ${cardName}
+      <div class="tarot-description" style="margin: 0; padding: 0;">${cardDescription}</div>
+    </div>
+    <p class="position-description"></p>
+  `;
+
+  if (index < 3) {
+    firstRow.appendChild(cardElement);
+  } else if (index < 5) {
+    secondRow.appendChild(cardElement);
+  } else if (index === 5) {
+    thirdRow.appendChild(cardElement);
+  } else {
+    fourthRow.appendChild(cardElement);
+  }
+
+  cardElement.addEventListener('click', function() {
+    const imageElement = this.querySelector('.tarot-image');
+    
+    document.getElementById('overlay-card').innerHTML = imageElement.outerHTML;
+    document.getElementById('overlay').style.display = 'flex';
   });
+});
 
-  // Show the info-block
-  document.getElementById('info-block').style.display = 'block';
+tarotCardsContainer.appendChild(firstRow);
+tarotCardsContainer.appendChild(secondRow);
+tarotCardsContainer.appendChild(thirdRow);
+tarotCardsContainer.appendChild(fourthRow); // Добавление четвертого ряда
+
+document.getElementById('overlay').addEventListener('click', function() {
+  this.style.display = 'none';
+});
+
+// Show the info-block
+document.getElementById('info-block').style.display = 'block';
+
+// Добавление функции adjustInfoBlockHeight
+const infoBlock = document.getElementById('info-block');
+
+function adjustInfoBlockHeight() {
+  const fourthRow = document.querySelectorAll('.tarot-row')[3];
+  const fourthRowBottom = fourthRow.getBoundingClientRect().bottom;
+  const contentTop = document.getElementById('content').getBoundingClientRect().top;
+  const newHeight = fourthRowBottom - contentTop;
+
+  infoBlock.style.top = `${fourthRowBottom}px`;
+}
+
+window.addEventListener('resize', adjustInfoBlockHeight);
+adjustInfoBlockHeight();
 }
     </script>
 
